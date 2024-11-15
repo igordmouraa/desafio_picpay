@@ -11,7 +11,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,24 +30,23 @@ public class Wallet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "full_name", nullable = false)
+    @Column(name = "full_name")
     private String fullName;
 
     @Column(name = "cpf_cnpj", unique = true)
-    @Pattern(regexp = "regex_for_cpf_cnpj", message = "CPF ou CNPJ inválido")
     private String cpfCnpj;
 
-    @Column(name = "email", unique = true, nullable = false)
+    @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
 
     @Column(name = "balance")
     private BigDecimal balance;
 
     @ManyToOne
-    @JoinColumn(name = "wallet_type_id", nullable = false)
+    @JoinColumn(name = "wallet_type_id")
     private WalletType walletType;
 
     @PrePersist
@@ -57,4 +55,5 @@ public class Wallet {
             balance = BigDecimal.ZERO;
         }
     }
+
 }

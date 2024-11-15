@@ -24,6 +24,7 @@ public class WalletType {
 
     private String description;
 
+
     @Getter
     @AllArgsConstructor
     public enum Enum {

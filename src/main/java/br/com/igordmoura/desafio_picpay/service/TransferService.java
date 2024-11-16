@@ -12,7 +12,6 @@ import br.com.igordmoura.desafio_picpay.exception.WalletNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import javax.naming.InsufficientResourcesException;
 import java.util.concurrent.CompletableFuture;
 
 @Service

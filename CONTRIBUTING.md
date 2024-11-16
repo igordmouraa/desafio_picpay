@@ -28,7 +28,7 @@ Para colaborar com código, siga os seguintes passos:
 1. **Fork** este repositório.
 2. **Clone** o seu fork:
    ```bash
-   git clone https://github.com/SEU_USUARIO/desafio_picpay.git
+   git clone https://github.com/igordmouraa/desafio_picpay
    ```
 3. Crie uma nova branch para a sua alteração:
    ```bash

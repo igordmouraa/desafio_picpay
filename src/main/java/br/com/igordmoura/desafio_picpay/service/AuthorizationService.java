@@ -1,7 +1,7 @@
 package br.com.igordmoura.desafio_picpay.service;
 
 import br.com.igordmoura.desafio_picpay.client.AuthorizationClient;
-import br.com.igordmoura.desafio_picpay.entity.Tranfer;
+import br.com.igordmoura.desafio_picpay.controller.dto.TransferDto;
 import br.com.igordmoura.desafio_picpay.exception.PicPayException;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ public class AuthorizationService {
         this.authorizationClient = authorizationClient;
     }
 
-    public boolean isAuthorized(Tranfer transfer) {
+    public boolean isAuthorized(TransferDto transfer) {
         var response = authorizationClient.isAuthorized();
 
         if(response.getStatusCode().isError()) {

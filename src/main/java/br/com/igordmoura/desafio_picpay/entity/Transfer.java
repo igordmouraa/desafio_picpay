@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Tranfer {
+public class Transfer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -29,4 +29,12 @@ public class Tranfer {
 
     @Column(name = "value")
     private BigDecimal value;
+
+
+
+    public Transfer(Wallet sender, Wallet receiver, BigDecimal value) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.value = value;
+    }
 }

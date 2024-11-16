@@ -14,7 +14,7 @@ public class DataLoader implements CommandLineRunner {
 
     @Autowired
     private WalletTypeRepository walletTypeRepository;
-
+    
     @Override
     public void run(String... args) throws Exception {
         Arrays.stream(WalletType.Enum.values())

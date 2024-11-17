@@ -1,15 +1,16 @@
 package br.com.igordmoura.desafio_picpay.controller;
 
+import br.com.igordmoura.desafio_picpay.controller.dto.BalanceResponseDto;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.igordmoura.desafio_picpay.entity.Wallet;
 import br.com.igordmoura.desafio_picpay.service.WalletService;
 import jakarta.validation.Valid;
 import br.com.igordmoura.desafio_picpay.controller.dto.CreateWalletDto;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import java.math.BigDecimal;
 
 @RestController
 public class WalletController {
@@ -25,5 +26,11 @@ public class WalletController {
         Wallet wallet = walletService.createWallet(dto);
 
         return ResponseEntity.ok(wallet);
+    }
+
+    @GetMapping("/wallets/{id}/balance")
+    public ResponseEntity<BalanceResponseDto> getWalletBalanceById(@PathVariable @NotNull Long id) {
+        BalanceResponseDto balanceResponse = walletService.getWalletBalanceMessageById(id);
+        return ResponseEntity.ok(balanceResponse);
     }
 }

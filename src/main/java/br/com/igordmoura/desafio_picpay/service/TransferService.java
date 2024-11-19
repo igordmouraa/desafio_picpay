@@ -12,6 +12,7 @@ import br.com.igordmoura.desafio_picpay.exception.WalletNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @Service
@@ -68,5 +69,9 @@ public class TransferService {
             throw new TransferNotAuthorizedException();
         }
 
+    }
+
+    public List<Transfer> getTransferHistory(Long walletId) {
+        return transferRepository.findBySenderIdOrReceiverId(walletId, walletId);
     }
 }

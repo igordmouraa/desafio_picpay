@@ -5,9 +5,9 @@ import br.com.igordmoura.desafio_picpay.entity.Transfer;
 import br.com.igordmoura.desafio_picpay.service.TransferService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class TransferController {
@@ -24,5 +24,11 @@ public class TransferController {
         var response = transferService.transfer(dto);
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/wallets/{id}/transfers")
+    public ResponseEntity<List<Transfer>> getTransferHistory(@PathVariable Long id) {
+        List<Transfer> transfers = transferService.getTransferHistory(id);
+        return ResponseEntity.ok(transfers);
     }
 }

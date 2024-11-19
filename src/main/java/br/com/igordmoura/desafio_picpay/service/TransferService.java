@@ -3,6 +3,7 @@ package br.com.igordmoura.desafio_picpay.service;
 import br.com.igordmoura.desafio_picpay.Repository.TransferRepository;
 import br.com.igordmoura.desafio_picpay.Repository.WalletRepository;
 import br.com.igordmoura.desafio_picpay.controller.dto.TransferDto;
+import br.com.igordmoura.desafio_picpay.controller.dto.TransferResponseDto;
 import br.com.igordmoura.desafio_picpay.entity.Transfer;
 import br.com.igordmoura.desafio_picpay.entity.Wallet;
 import br.com.igordmoura.desafio_picpay.exception.InsufficientBalanceException;
@@ -12,8 +13,10 @@ import br.com.igordmoura.desafio_picpay.exception.WalletNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 @Service
 public class TransferService {
@@ -44,7 +47,7 @@ public class TransferService {
         sender.debit(transferDto.value());
         receiver.credit(transferDto.value());
 
-        var transfer = new Transfer(sender, receiver, transferDto.value());
+        var transfer = new Transfer(sender, receiver, transferDto.value(), LocalDateTime.now());
 
         walletRepository.save(sender);
         walletRepository.save(receiver);
@@ -71,7 +74,17 @@ public class TransferService {
 
     }
 
-    public List<Transfer> getTransferHistory(Long walletId) {
-        return transferRepository.findBySenderIdOrReceiverId(walletId, walletId);
+    public List<TransferResponseDto> getTransferHistory(Long walletId) {
+        return transferRepository.findBySenderIdOrReceiverId(walletId, walletId)
+                .stream()
+                .map(transfer -> new TransferResponseDto(
+                        transfer.getId(),
+                        transfer.getValue(),
+                        transfer.getSender().getId(),
+                        transfer.getSender().getFullName(),
+                        transfer.getReceiver().getId(),
+                        transfer.getReceiver().getFullName(),
+                        transfer.getTimestamp()))
+                .collect(Collectors.toList());
     }
 }

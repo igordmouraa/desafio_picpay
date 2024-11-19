@@ -1,6 +1,7 @@
 package br.com.igordmoura.desafio_picpay.controller;
 
 import br.com.igordmoura.desafio_picpay.controller.dto.TransferDto;
+import br.com.igordmoura.desafio_picpay.controller.dto.TransferResponseDto;
 import br.com.igordmoura.desafio_picpay.entity.Transfer;
 import br.com.igordmoura.desafio_picpay.service.TransferService;
 import jakarta.validation.Valid;
@@ -27,8 +28,8 @@ public class TransferController {
     }
 
     @GetMapping("/wallets/{id}/transfers")
-    public ResponseEntity<List<Transfer>> getTransferHistory(@PathVariable Long id) {
-        List<Transfer> transfers = transferService.getTransferHistory(id);
+    public ResponseEntity<List<TransferResponseDto>> getTransferHistory(@PathVariable Long id) {
+        List<TransferResponseDto> transfers = transferService.getTransferHistory(id);
         return ResponseEntity.ok(transfers);
     }
 }

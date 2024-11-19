@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -30,11 +31,13 @@ public class Transfer {
     @Column(name = "value")
     private BigDecimal value;
 
+    @Column(name = "timestamp")
+    private LocalDateTime timestamp;
 
-
-    public Transfer(Wallet sender, Wallet receiver, BigDecimal value) {
+    public Transfer(Wallet sender, Wallet receiver, BigDecimal value, LocalDateTime timestamp) {
         this.sender = sender;
         this.receiver = receiver;
         this.value = value;
+        this.timestamp = timestamp;
     }
 }

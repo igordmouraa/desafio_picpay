@@ -49,16 +49,16 @@ Content-Type: application/json
 
 ```json
 {
-    "id": 1,
-    "fullName": "John Doe",
-    "cpfCnpj": "12345678901",
-    "email": "johndoe@example.com",
-    "password": "password",
-    "balance": 0.00,
-    "walletType": {
-        "id": 1,
-        "description": "user"
-    }
+   "id": 1,
+   "fullName": "John Doe",
+   "cpfCnpj": "12345678901",
+   "email": "johndoe@example.com",
+   "password": "password",
+   "balance": 0.00,
+   "walletType": {
+      "id": 1,
+      "description": "user"
+   }
 }
 ```
 
@@ -80,7 +80,7 @@ GET /wallets/1/balance
 
 ```json
 {
-    "message": "O saldo do usuário John Doe é 1000.00"
+   "message": "O saldo do usuário John Doe é 1000.00"
 }
 ```
 
@@ -109,36 +109,37 @@ Content-Type: application/json
 
 ```json
 {
-    "id": "123e4567-e89b-12d3-a456-426614174000",
-    "sender": {
-        "id": 1,
-        "fullName": "John Doe",
-        "cpfCnpj": "12345678901",
-        "email": "johndoe@example.com",
-        "balance": 900.00,
-        "walletType": {
-            "id": 1,
-            "description": "user"
-        }
-    },
-    "receiver": {
-        "id": 2,
-        "fullName": "Jane Smith",
-        "cpfCnpj": "98765432100",
-        "email": "janesmith@example.com",
-        "balance": 1100.00,
-        "walletType": {
-            "id": 1,
-            "description": "user"
-        }
-    },
-    "value": 100.00
+   "id": "123e4567-e89b-12d3-a456-426614174000",
+   "sender": {
+      "id": 1,
+      "fullName": "John Doe",
+      "cpfCnpj": "12345678901",
+      "email": "johndoe@example.com",
+      "balance": 900.00,
+      "walletType": {
+         "id": 1,
+         "description": "user"
+      }
+   },
+   "receiver": {
+      "id": 2,
+      "fullName": "Jane Smith",
+      "cpfCnpj": "98765432100",
+      "email": "janesmith@example.com",
+      "balance": 1100.00,
+      "walletType": {
+         "id": 1,
+         "description": "user"
+      }
+   },
+   "value": 100.00,
+   "timestamp": "2023-10-07T15:00:00"
 }
 ```
 
 ### Histórico de Transferências
 
-A API permite visualizar o histórico de transferências de uma carteira específica.
+A API permite visualizar o histórico de transferências de uma carteira específica, agora simplificando os dados de resposta para incluir apenas informações essenciais.
 
 #### Endpoint
 
@@ -156,29 +157,12 @@ GET /wallets/1/transfers
 [
    {
       "id": "123e4567-e89b-12d3-a456-426614174000",
-      "sender": {
-         "id": 1,
-         "fullName": "John Doe",
-         "cpfCnpj": "12345678901",
-         "email": "johndoe@example.com",
-         "balance": 1000.00,
-         "walletType": {
-            "id": 1,
-            "description": "user"
-         }
-      },
-      "receiver": {
-         "id": 2,
-         "fullName": "Jane Smith",
-         "cpfCnpj": "98765432100",
-         "email": "janesmith@example.com",
-         "balance": 2000.00,
-         "walletType": {
-            "id": 1,
-            "description": "user"
-         }
-      },
-      "value": 100.00
+      "value": 100.00,
+      "senderId": 1,
+      "senderFullName": "John Doe",
+      "receiverId": 2,
+      "receiverFullName": "Jane Smith",
+      "timestamp": "2023-10-07T15:00:00"
    }
 ]
 ```

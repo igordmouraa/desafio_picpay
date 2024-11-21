@@ -20,10 +20,8 @@ public class TransferController {
     }
 
     @PostMapping("/transfer")
-    public ResponseEntity<Transfer> transfer(@RequestBody @Valid TransferDto dto) {
-
+    public ResponseEntity<TransferResponseDto> transfer(@RequestBody @Valid TransferDto dto) {
         var response = transferService.transfer(dto);
-
         return ResponseEntity.ok(response);
     }
 

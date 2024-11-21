@@ -34,7 +34,7 @@ public class TransferService {
     }
 
     @Transactional
-    public Transfer transfer(TransferDto transferDto) {
+    public TransferResponseDto transfer(TransferDto transferDto) {
 
         var sender = walletRepository.findById(transferDto.payer())
                 .orElseThrow(() -> new WalletNotFoundException(transferDto.payer()));
@@ -56,7 +56,15 @@ public class TransferService {
 
         CompletableFuture.runAsync(() -> notificationService.sendNotification(transferResult));
 
-        return transferResult;
+        return new TransferResponseDto(
+                transferResult.getId(),
+                transferResult.getValue(),
+                transferResult.getSender().getId(),
+                transferResult.getSender().getFullName(),
+                transferResult.getReceiver().getId(),
+                transferResult.getReceiver().getFullName(),
+                transferResult.getTimestamp()
+        );
     }
 
     public void validateTransfer(TransferDto transferDto, Wallet sender) {

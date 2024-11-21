@@ -110,29 +110,15 @@ Content-Type: application/json
 ```json
 {
    "id": "123e4567-e89b-12d3-a456-426614174000",
-   "sender": {
-      "id": 1,
-      "fullName": "John Doe",
-      "cpfCnpj": "12345678901",
-      "email": "johndoe@example.com",
-      "balance": 900.00,
-      "walletType": {
-         "id": 1,
-         "description": "user"
-      }
-   },
-   "receiver": {
-      "id": 2,
-      "fullName": "Jane Smith",
-      "cpfCnpj": "98765432100",
-      "email": "janesmith@example.com",
-      "balance": 1100.00,
-      "walletType": {
-         "id": 1,
-         "description": "user"
-      }
-   },
    "value": 100.00,
+   "payer": {
+      "id": 1,
+      "fullName": "John Doe"
+   },
+   "payee": {
+      "id": 2,
+      "fullName": "Jane Smith"
+   },
    "timestamp": "2023-10-07T15:00:00"
 }
 ```

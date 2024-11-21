@@ -1,6 +1,7 @@
 package br.com.igordmoura.desafio_picpay.controller;
 
 import br.com.igordmoura.desafio_picpay.controller.dto.BalanceResponseDto;
+import br.com.igordmoura.desafio_picpay.controller.dto.DepositDto;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,4 +34,11 @@ public class WalletController {
         BalanceResponseDto balanceResponse = walletService.getWalletBalanceMessageById(id);
         return ResponseEntity.ok(balanceResponse);
     }
+
+    @PostMapping("/wallets/deposit")
+    public ResponseEntity<Wallet> deposit(@RequestBody @Valid DepositDto depositDto) {
+        Wallet updatedWallet = walletService.deposit(depositDto);
+        return ResponseEntity.ok(updatedWallet);
+    }
+
 }
